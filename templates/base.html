@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='bulma/css/bulma.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='bulma/css/bulma.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='fontawesome/css/all.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='defaults/main.css')}}">
+    <link rel="icon" href="{{url_for('static',filename='icons/favicon.ico')}}" type="x/icon">
+    {% if title %}
+        <title>StudentPortal-{{title}}</title>
+        {%else%}
+            <title>StudentPortal</title>
+    {% endif %}
+</head>
+<body style="font-family:Helvetica;">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="logo" style="font-size:20px;color: white;font-family: Helevetica;">Student Result Portal</div>
+        {%if current_user.is_authenticated%}
+        <li><a href="/logout" class="btn btn-outline-info">Logout</a></li>
+        {%else%}
+        <li><a href="/" class="btn btn-outline-info">Login</a></li>
+        {%endif%}
+    </nav>
+    <div class="container">
+    <div class="row" style="margin-top:20px" >
+            <div class="col-md-8">
+                {%with messages=get_flashed_messages(with_categories=true)%}
+                    {%if messages%}
+                        {% for category,message in messages %}  
+                            <div class="alert alert-{{category}}">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {%endif%}
+                {%endwith%}
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

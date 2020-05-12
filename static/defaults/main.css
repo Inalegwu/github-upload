@@ -1,0 +1,11 @@
+.bounce-content
+{
+    border: 1px solid black;
+    width:80%;
+    height: 200px;
+    background: rgb(247, 73, 73);
+    color: white;
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+}
